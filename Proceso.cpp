@@ -34,7 +34,7 @@ void Proceso::mostrarInformacion()
 {
     cout << "PID: " << PID << endl
         << "PPID: " << PPID << endl
-        << "Inicio: " << inicio << " mintyuos " << endl
+        << "Minutos hasta inicio: " << inicio << " minutos " << endl
         << "Tiempo de vida: " << tiempoVida << " minutos" << endl
         << "Prioridad: " << prioridad << endl
         << "Núcleo: " << nucleo << endl;

@@ -5,7 +5,11 @@
 
 Sistema::Sistema()
 {
-    int nucleosLibres = TOTAL_NUCLEOS;
+    nucleosLibres = TOTAL_NUCLEOS;
+    for (int i = 0; i < TOTAL_NUCLEOS; i++)
+    {
+        nucleos[i] = NULL;
+    }
     crearProcesos();
 }
 
@@ -60,12 +64,13 @@ void Sistema::mostrarColaEspera()
 
 void Sistema::mostrarEjecutando()
 {
+    cout << nucleosLibres << " núcleos libres" << endl;
     cout << "Procesos en ejecución:" << endl;
     for (int i = 0; i < TOTAL_NUCLEOS; i++)
     {
         if (nucleos[i] != NULL)
         {
-            cout << "Núcleo " << i + 1 << ": ";
+            cout << "Núcleo " << i + 1 << ": " << endl;
             nucleos[i]->mostrarInformacion();
             cout << endl;
         }
@@ -87,10 +92,10 @@ void Sistema::simularMinutos(int n)
         if (!pilaProcesos.esVacia())
         {
             pilaProcesos.reducirTiempoInicio();
-            Proceso proceso = pilaProcesos.primero();
-            if (proceso.getInicio() == 0)
+            while (!pilaProcesos.esVacia() && pilaProcesos.primero().getInicio() == 0)
             {
-                cout << "Proceso " << proceso.getPID() << "entró en la cola de espera" << endl;
+                Proceso proceso = pilaProcesos.desapilar();
+                cout << "Proceso " << proceso.getPID() << " entró en la cola de espera" << endl;
                 procesoEntraEspera(proceso);
             }
         }
@@ -100,30 +105,26 @@ void Sistema::simularMinutos(int n)
         {
             if (nucleos[j] != NULL)
             {
+                nucleos[j]->reducirTiempoVida();
                 if (nucleos[j]->getTiempoVida() == 0)
                 {
-                    cout << "Proceso " << nucleos[j]->getPID() << "terminó de ejecutarse" << endl;
+                    cout << "Proceso " << nucleos[j]->getPID() << " terminó de ejecutarse" << endl;
                     nucleos[j] = NULL;
                     nucleosLibres++;
-                }
-                else
-                {
-                    nucleos[j]->reducirTiempoVida();
                 }
             }
         }
 
-        // Asignar procesos a los núcleos
         while (!colaEspera.esVacia() && nucleosLibres > 0)
         {
             Proceso proceso = colaEspera.desencolar();
-            for (int j = 0; j < TOTAL_NUCLEOS; j++)
+            for (int k = 0; k < TOTAL_NUCLEOS; k++)
             {
-                if (nucleos[j] == NULL)
+                if (nucleos[k] == NULL)
                 {
-                    nucleos[j] = new Proceso(proceso);
+                    nucleos[k] = new Proceso(proceso);
                     nucleosLibres--;
-                    cout << "Proceso " << proceso.getPID() << "asignado al núcleo " << j + 1 << endl;
+                    cout << "Proceso " << proceso.getPID() << " asignado al núcleo " << k + 1 << endl;
                     break;
                 }
             }
@@ -173,8 +174,7 @@ void Sistema::procesoEntraEspera(Proceso p)
     Cola caux;
     while (!colaEspera.esVacia() && colaEspera.frente().getPrioridad() < p.getPrioridad())
     {
-        Proceso proceso = colaEspera.desencolar();
-        caux.encolar(proceso);
+        caux.encolar(colaEspera.desencolar());
     }
     caux.encolar(p);
     while (!colaEspera.esVacia())

@@ -6,7 +6,7 @@ using namespace std;
 Cola::Cola()
 {
     primero = NULL;
-    ultimo == NULL;
+    ultimo = NULL;
     longitud = 0;
 }
 Cola::~Cola() {}
@@ -81,7 +81,7 @@ void Cola::mostrarCola()
     NodoCola *aux = primero;
     if (esVacia())
     {
-        throw runtime_error("La cola está vacía");
+        cout << "La cola está vacía" << endl;
     }
     else
     {

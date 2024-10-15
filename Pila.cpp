@@ -37,6 +37,7 @@ Proceso Pila::desapilar()
         Proceso elemento = cima->valor;
         NodoPila *aux = cima;
         cima = cima->siguiente;
+        delete aux;
         return elemento;
     }
     else
