@@ -102,6 +102,11 @@ void Proceso::setNucleo(int nuc)
     nucleo = nuc;
 }
 
+void Proceso::reducirTiempoInicio()
+{
+    inicio--;
+}
+
 void Proceso::reducirTiempoVida()
 {
     tiempoVida--;

@@ -13,9 +13,10 @@ public:
     ~Pila();
     bool esVacia();
     void apilar(Proceso p);
-    void desapilar();
     Proceso primero();
+    Proceso desapilar();
     void mostrarTodo();
+    void reducirTiempoInicio();
 };
 
 #endif // PILA_H

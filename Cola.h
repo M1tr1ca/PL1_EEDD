@@ -14,12 +14,11 @@ public:
     Cola();
     ~Cola();
     void encolar(Proceso p);
-    Proceso inicio();
+    Proceso frente();
     Proceso fin();
     Proceso desencolar();
     int getLongitud();
     bool esVacia();
-    Proceso frente();   // frente
     void mostrarCola(); // No es correcto , se implementa para ver que está creada correctamente
 };
 

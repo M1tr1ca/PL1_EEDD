@@ -55,18 +55,6 @@ Proceso Cola::desencolar()
     }
 }
 
-Proceso Cola::inicio()
-{
-    if (!esVacia())
-    {
-        return primero->elemento;
-    }
-    else
-    {
-        throw runtime_error("La cola está vacía");
-    }
-}
-
 Proceso Cola::fin()
 {
     if (!esVacia())
@@ -93,7 +81,7 @@ void Cola::mostrarCola()
     NodoCola *aux = primero;
     if (esVacia())
     {
-        cout << "Cola vacía" << endl;
+        throw runtime_error("La cola está vacía");
     }
     else
     {
@@ -104,11 +92,12 @@ void Cola::mostrarCola()
         }
     }
 }
+
 Proceso Cola::frente()
 {
     if (esVacia())
     {
-        throw runtime_error("La pila está vacía");
+        throw runtime_error("La cola está vacía");
     }
     return primero->elemento; // Retorna el valor en la cima de la pila
 }

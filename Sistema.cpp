@@ -26,11 +26,10 @@ void Sistema::crearProcesos()
 
 void Sistema::mostrarPila()
 {
-    cout << "Procesos en la pila:" << endl;
     if (!pilaProcesos.esVacia())
     {
-        Proceso proceso = pilaProcesos.primero();
-        proceso.mostrarInformacion();
+        cout << "Procesos en la pila:" << endl;
+        pilaProcesos.mostrarTodo();
     }
     else
     {
@@ -40,18 +39,23 @@ void Sistema::mostrarPila()
 
 void Sistema::borrarPila()
 {
-    while (!pilaProcesos.esVacia())
-    {
-        pilaProcesos.desapilar();
-    }
+    Pila pila;
+    pilaProcesos = pila;
     cout << "Pila de procesos borrada.\n";
 }
 
 void Sistema::mostrarColaEspera()
 {
-    cout << "Cola de espera:" << endl;
-    // Muestra solo el primer elemento
-    colaEspera.mostrarCola();
+    if (!colaEspera.esVacia())
+    {
+        cout << "Procesos en la cola:" << endl;
+        // Muestra solo el primer elemento
+        colaEspera.mostrarCola();
+    }
+    else
+    {
+        cout << "La cola de espera está vacía" << endl;
+    }
 }
 
 void Sistema::mostrarEjecutando()
@@ -65,6 +69,10 @@ void Sistema::mostrarEjecutando()
             nucleos[i]->mostrarInformacion();
             cout << endl;
         }
+        else
+        {
+            cout << "Núcleo " << i + 1 << ": Vacío" << endl;
+        }
     }
 }
 
@@ -73,16 +81,20 @@ void Sistema::simularMinutos(int n)
     // Simular la llegada/salida de procesos
     for (int i = 0; i < n; i++)
     {
-        cout << "Simulando minuto " << i << "..." << endl;
+
+        // Simular los procesos en la pila
+        cout << "Simulando minuto " << i + 1 << "..." << endl;
         if (!pilaProcesos.esVacia())
         {
+            pilaProcesos.reducirTiempoInicio();
             Proceso proceso = pilaProcesos.primero();
-            if (proceso.getInicio() == i)
+            if (proceso.getInicio() == 0)
             {
                 cout << "Proceso " << proceso.getPID() << "entró en la cola de espera" << endl;
                 procesoEntraEspera(proceso);
             }
         }
+
         // Simular la ejecución de procesos
         for (int j = 0; j < TOTAL_NUCLEOS; j++)
         {
@@ -100,6 +112,7 @@ void Sistema::simularMinutos(int n)
                 }
             }
         }
+
         // Asignar procesos a los núcleos
         while (!colaEspera.esVacia() && nucleosLibres > 0)
         {
@@ -131,15 +144,13 @@ void Sistema::nuevoProceso(Proceso p)
     Pila paux;
     while (!pilaProcesos.esVacia() && pilaProcesos.primero().getInicio() < p.getInicio())
     {
-        paux.apilar(pilaProcesos.primero());
-        pilaProcesos.desapilar();
+        paux.apilar(pilaProcesos.desapilar());
     }
     pilaProcesos.apilar(p);
 
     while (!paux.esVacia())
     {
-        pilaProcesos.apilar(paux.primero());
-        paux.desapilar();
+        pilaProcesos.apilar(paux.desapilar());
     }
 }
 
@@ -148,14 +159,12 @@ void Sistema::eliminarProcesoPila(Proceso p)
     Pila paux;
     while (!pilaProcesos.esVacia() && pilaProcesos.primero().getPID() != p.getPID())
     {
-        paux.apilar(pilaProcesos.primero());
-        pilaProcesos.desapilar();
+        paux.apilar(pilaProcesos.desapilar());
     }
     pilaProcesos.desapilar();
     while (!pilaProcesos.esVacia())
     {
-        pilaProcesos.apilar(paux.primero());
-        paux.desapilar();
+        pilaProcesos.apilar(paux.desapilar());
     }
 }
 

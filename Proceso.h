@@ -21,6 +21,7 @@ public:
     ~Proceso();
     // Con esto se ven todos los atributos
     void mostrarInformacion();
+    void reducirTiempoInicio();
     void reducirTiempoVida();
     // Getters
     int getPID();

@@ -30,13 +30,18 @@ void Pila::apilar(Proceso p)
     cima = new NodoPila(p, cima);
 }
 
-void Pila::desapilar()
+Proceso Pila::desapilar()
 {
     if (cima)
     {
         pnodo temp = cima;
         cima = cima->siguiente;
         delete temp;
+        return temp->valor;
+    }
+    else
+    {
+        throw runtime_error("La pila está vacía");
     }
 }
 
@@ -59,7 +64,18 @@ void Pila::mostrarTodo()
     pnodo actual = cima;
     while (actual != nullptr)
     {
-        cout << actual->valor.getPID() << endl; // Asumiendo que 'Proceso' tiene sobrecargado el operador '<<'
+        actual->valor.mostrarInformacion(); // Asumiendo que 'Proceso' tiene sobrecargado el operador '<<'
+        cout << endl;
+        actual = actual->siguiente;
+    }
+}
+
+void Pila::reducirTiempoInicio()
+{
+    pnodo actual = cima;
+    while (actual != nullptr)
+    {
+        actual->valor.reducirTiempoInicio();
         actual = actual->siguiente;
     }
 }
