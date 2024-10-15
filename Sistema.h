@@ -15,7 +15,7 @@ class Sistema
 private:
     Pila pilaProcesos; // Pila de procesos ordenados por inicio
     Cola colaEspera;   // Por orden de prioridad
-    int nucleosLibres; // salen los núcleos libres q hay 
+    int nucleosLibres; // salen los núcleos libres q hay
     const int TOTAL_NUCLEOS = 3;
     Proceso *nucleos[3]; // Núcleos del sistema
 
@@ -28,6 +28,9 @@ public:
     void mostrarEjecutando();   // Punto 5, MUESTRA los PROCESOS EN EJECUCI´NO
     void simularMinutos(int n); // Punto 6, la n viene por teclado y procesos que pasan
     void ejecutarProcesos();    // Punto 7, salen todos los procesos al finalizarse, los en espera también
-    void mostrarEstado();  
+    void mostrarEstado();
+    void nuevoProceso(Proceso proceso);
     void procesoEntraEspera(Proceso proceso);
+    void eliminarProcesoPila(Proceso p);
+    void eliminarProcesoCola(Proceso p);
 };

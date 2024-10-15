@@ -5,28 +5,28 @@ using namespace std;
 
 void mostrarMenu()
 {
-    cout << "╔════════════════════════════════════════════════════════════════╗" << endl;
-    cout << "║                      ╔════════════════════╗                    ║" << endl;
-    cout << "║                      ║   * PROCESSES *    ║                    ║" << endl;
-    cout << "║                      ╚════════════════════╝                    ║" << endl;
-    cout << "║                                                                ║" << endl;
-    cout << "║     ╔════════════════════════════════════════════════════╗     ║" << endl;
-    cout << "║     ║                   SYSTEM MENU                      ║     ║" << endl;
-    cout << "║     ╠════════════════════════════════════════════════════╣     ║" << endl;
-    cout << "║     ║  1. Crear la pila de procesos                      ║     ║" << endl;
-    cout << "║     ║  2. Mostrar procesos en la pila                    ║     ║" << endl;
-    cout << "║     ║  3. Borrar pila de procesos                        ║     ║" << endl;
-    cout << "║     ║  4. Mostrar cola de espera                         ║     ║" << endl;
-    cout << "║     ║  5. Mostrar procesos en ejecución                  ║     ║" << endl;
-    cout << "║     ║  6. Simular el paso de N minutos                   ║     ║" << endl;
-    cout << "║     ║  7. Ejecutar todos los procesos                    ║     ║" << endl;
-    cout << "║     ║  0. Salir                                          ║     ║" << endl;
-    cout << "║     ╚════════════════════════════════════════════════════╝     ║" << endl;
-    cout << "║                                                                ║" << endl;
-    cout << "║          ╔══════════════════════════════════════════╗          ║" << endl;
-    cout << "║          ║  Selecciona una opción y presiona Enter  ║          ║" << endl;
-    cout << "║          ╚══════════════════════════════════════════╝          ║" << endl;
-    cout << "╚════════════════════════════════════════════════════════════════╝" << endl;
+    cout << "+----------------------------------------------------------------+" << endl;
+    cout << "|                      +--------------------+                    |" << endl;
+    cout << "|                      |   * PROCESSES *    |                    |" << endl;
+    cout << "|                      +--------------------+                    |" << endl;
+    cout << "|                                                                |" << endl;
+    cout << "|     +----------------------------------------------------+     |" << endl;
+    cout << "|     |                   SYSTEM MENU                      |     |" << endl;
+    cout << "|     +----------------------------------------------------+     |" << endl;
+    cout << "|     |  1. Crear la pila de procesos                      |     |" << endl;
+    cout << "|     |  2. Mostrar procesos en la pila                    |     |" << endl;
+    cout << "|     |  3. Borrar pila de procesos                        |     |" << endl;
+    cout << "|     |  4. Mostrar cola de espera                         |     |" << endl;
+    cout << "|     |  5. Mostrar procesos en ejecución                  |     |" << endl;
+    cout << "|     |  6. Simular el paso de N minutos                   |     |" << endl;
+    cout << "|     |  7. Ejecutar todos los procesos                    |     |" << endl;
+    cout << "|     |  0. Salir                                          |     |" << endl;
+    cout << "|     +----------------------------------------------------+     |" << endl;
+    cout << "|                                                                |" << endl;
+    cout << "|          +------------------------------------------+          |" << endl;
+    cout << "|          |  Selecciona una opción y presiona Enter  |          |" << endl;
+    cout << "|          +------------------------------------------+          |" << endl;
+    cout << "+----------------------------------------------------------------+" << endl;
 }
 
 int main()
@@ -37,8 +37,10 @@ int main()
     do
     {
         mostrarMenu();
-        cout << "Selecciona una opción: ";
+        cout << "          +------------------------------------------+          " << endl;
+        cout << "                Selecciona una opción: ";
         cin >> opcion;
+        cout << "          +------------------------------------------+          " << endl;
 
         switch (opcion)
         {

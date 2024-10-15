@@ -12,16 +12,16 @@ Sistema::Sistema()
 void Sistema::crearProcesos()
 {
     // Crear 10 procesos manualmente
-    pilaProcesos.apilar(Proceso(1001, 1, 10, 30, 2, 1));
-    pilaProcesos.apilar(Proceso(1002, 1, 5, 20, 1, 2));
-    pilaProcesos.apilar(Proceso(1003, 1, 15, 25, 3, 1));
-    pilaProcesos.apilar(Proceso(1004, 1, 3, 10, 0, 1));
-    pilaProcesos.apilar(Proceso(1005, 1, 12, 15, 4, 2));
-    pilaProcesos.apilar(Proceso(1006, 1, 8, 18, 1, 2));
-    pilaProcesos.apilar(Proceso(1007, 1, 20, 10, 2, 1));
-    pilaProcesos.apilar(Proceso(1008, 1, 25, 30, 3, 2));
-    pilaProcesos.apilar(Proceso(1009, 1, 14, 20, 0, 1));
-    pilaProcesos.apilar(Proceso(1010, 1, 18, 15, 1, 1));
+    nuevoProceso(Proceso(1001, 1, 10, 30, 2, 1));
+    nuevoProceso(Proceso(1002, 1, 5, 20, 1, 2));
+    nuevoProceso(Proceso(1003, 1, 15, 25, 3, 1));
+    nuevoProceso(Proceso(1004, 1, 3, 10, 0, 1));
+    nuevoProceso(Proceso(1005, 1, 12, 15, 4, 2));
+    nuevoProceso(Proceso(1006, 1, 8, 18, 1, 2));
+    nuevoProceso(Proceso(1007, 1, 20, 10, 2, 1));
+    nuevoProceso(Proceso(1008, 1, 25, 30, 3, 2));
+    nuevoProceso(Proceso(1009, 1, 14, 20, 0, 1));
+    nuevoProceso(Proceso(1010, 1, 18, 15, 1, 1));
 }
 
 void Sistema::mostrarPila()
@@ -126,6 +126,39 @@ void Sistema::ejecutarProcesos()
     }
 }
 
+void Sistema::nuevoProceso(Proceso p)
+{
+    Pila paux;
+    while (!pilaProcesos.esVacia() && pilaProcesos.primero().getInicio() < p.getInicio())
+    {
+        paux.apilar(pilaProcesos.primero());
+        pilaProcesos.desapilar();
+    }
+    pilaProcesos.apilar(p);
+
+    while (!paux.esVacia())
+    {
+        pilaProcesos.apilar(paux.primero());
+        paux.desapilar();
+    }
+}
+
+void Sistema::eliminarProcesoPila(Proceso p)
+{
+    Pila paux;
+    while (!pilaProcesos.esVacia() && pilaProcesos.primero().getPID() != p.getPID())
+    {
+        paux.apilar(pilaProcesos.primero());
+        pilaProcesos.desapilar();
+    }
+    pilaProcesos.desapilar();
+    while (!pilaProcesos.esVacia())
+    {
+        pilaProcesos.apilar(paux.primero());
+        paux.desapilar();
+    }
+}
+
 void Sistema::procesoEntraEspera(Proceso p)
 {
     Cola caux;
@@ -135,6 +168,21 @@ void Sistema::procesoEntraEspera(Proceso p)
         caux.encolar(proceso);
     }
     caux.encolar(p);
+    while (!colaEspera.esVacia())
+    {
+        caux.encolar(colaEspera.desencolar());
+    }
+    colaEspera = caux;
+}
+
+void Sistema::eliminarProcesoCola(Proceso p)
+{
+    Cola caux;
+    while (!colaEspera.esVacia() && colaEspera.frente().getPID() != p.getPID())
+    {
+        caux.encolar(colaEspera.desencolar());
+    }
+    colaEspera.desencolar();
     while (!colaEspera.esVacia())
     {
         caux.encolar(colaEspera.desencolar());
