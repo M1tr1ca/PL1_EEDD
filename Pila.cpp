@@ -34,10 +34,10 @@ Proceso Pila::desapilar()
 {
     if (cima)
     {
-        pnodo temp = cima;
+        Proceso elemento = cima->valor;
+        NodoPila *aux = cima;
         cima = cima->siguiente;
-        delete temp;
-        return temp->valor;
+        return elemento;
     }
     else
     {
