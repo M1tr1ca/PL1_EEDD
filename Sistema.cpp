@@ -134,7 +134,19 @@ void Sistema::simularMinutos(int n)
 
 void Sistema::ejecutarProcesos()
 {
-    while (!pilaProcesos.esVacia() && !colaEspera.esVacia())
+    // while (!pilaProcesos.esVacia() && !colaEspera.esVacia())
+    // {
+    //     simularMinutos(1);
+    // }
+    while (!pilaProcesos.esVacia())
+    {
+        simularMinutos(1);
+    }
+    while (!colaEspera.esVacia())
+    {
+        simularMinutos(1);
+    }
+    while (nucleosLibres < TOTAL_NUCLEOS)
     {
         simularMinutos(1);
     }
