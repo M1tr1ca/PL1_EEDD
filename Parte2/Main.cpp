@@ -6,9 +6,9 @@ using namespace std;
 void mostrarMenu()
 {
     cout << "+----------------------------------------------------------------+" << endl;
-    cout << "|                      +--------------------+                    |" << endl;
-    cout << "|                      |   * PROCESSES *    |                    |" << endl;
-    cout << "|                      +--------------------+                    |" << endl;
+    cout << "|                     +--------------------+                     |" << endl;
+    cout << "|                     |    * PROCESSES *   |                     |" << endl;
+    cout << "|                     +--------------------+                     |" << endl;
     cout << "|                                                                |" << endl;
     cout << "|     +----------------------------------------------------+     |" << endl;
     cout << "|     |                   SYSTEM MENU                      |     |" << endl;
@@ -54,18 +54,21 @@ int main()
             sistema.borrarPila();
             break;
         case 4:
-            sistema.mostrarColaEspera();
-            break;
-        case 5:
-            sistema.mostrarEjecutando();
-            break;
-        case 6:
             int n;
             cout << "Introduce N minutos: ";
             cin >> n;
             sistema.simularMinutos(n);
             break;
+        case 5:
+            sistema.mostrarNucleos();
+            break;
+        case 6:
+            sistema.mostrarMasMenos();
+            break;
         case 7:
+            sistema.mostrarNumNucleos();
+            break;
+        case 8:
             sistema.ejecutarProcesos();
             break;
         case 0:

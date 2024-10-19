@@ -48,7 +48,7 @@ void Sistema::borrarPila()
     cout << "Pila de procesos borrada.\n";
 }
 
-void Sistema::mostrarColaEspera()
+void Sistema::mostrarNucleos()
 {
     if (!colaEspera.esVacia())
     {
@@ -167,20 +167,6 @@ void Sistema::nuevoProceso(Proceso p)
     }
 }
 
-void Sistema::eliminarProcesoPila(Proceso p)
-{
-    Pila paux;
-    while (!pilaProcesos.esVacia() && pilaProcesos.primero().getPID() != p.getPID())
-    {
-        paux.apilar(pilaProcesos.desapilar());
-    }
-    pilaProcesos.desapilar();
-    while (!pilaProcesos.esVacia())
-    {
-        pilaProcesos.apilar(paux.desapilar());
-    }
-}
-
 void Sistema::procesoEntraEspera(Proceso p)
 {
     Cola caux;
@@ -189,21 +175,6 @@ void Sistema::procesoEntraEspera(Proceso p)
         caux.encolar(colaEspera.desencolar());
     }
     caux.encolar(p);
-    while (!colaEspera.esVacia())
-    {
-        caux.encolar(colaEspera.desencolar());
-    }
-    colaEspera = caux;
-}
-
-void Sistema::eliminarProcesoCola(Proceso p)
-{
-    Cola caux;
-    while (!colaEspera.esVacia() && colaEspera.frente().getPID() != p.getPID())
-    {
-        caux.encolar(colaEspera.desencolar());
-    }
-    colaEspera.desencolar();
     while (!colaEspera.esVacia())
     {
         caux.encolar(colaEspera.desencolar());
