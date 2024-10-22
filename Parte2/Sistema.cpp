@@ -7,7 +7,8 @@
 
 Sistema::Sistema()
 {
-    Lista nucleos;
+    pilaProcesos = Pila();
+    nucleos = Lista();
     Nucleo n1;
     nucleos.izquierda(n1);
     crearProcesos();
@@ -118,15 +119,15 @@ void Sistema::nuevoProceso(Proceso p)
 void Sistema::procesoEntraEspera(Proceso p)
 {
     Nucleo *n = nucleos.buscarMenosCola();
-    if (n->numeroProcesosEnEspera() >= 3) // El proceso ejecutándose también cuenta
+    if (n->numeroProcesosTotales() >= 3) // El proceso ejecutándose también cuenta
     {
         Nucleo nuevoNucleo;
         nucleos.izquierda(nuevoNucleo);
-        nuevoNucleo.setProcesoActual(&p);
+        nuevoNucleo.setProcesoActual(p);
     }
-    else if (n->numeroProcesosEnEspera() == 0)
+    else if (n->numeroProcesosTotales() == 0)
     {
-        n->setProcesoActual(&p);
+        n->setProcesoActual(p);
     }
     else
     {
@@ -141,8 +142,8 @@ void Sistema::mostrarEstado()
 
 void Sistema::mostrarMasMenos()
 {
-    cout << "Núcleo con más procesos en espera: " << nucleos.buscarMasCola()->numeroProcesosEnEspera() << endl;
-    cout << "Núcleo con menos procesos en espera: " << nucleos.buscarMenosCola()->numeroProcesosEnEspera() << endl;
+    cout << "Núcleo con más procesos en espera: " << nucleos.buscarMasCola()->numeroProcesosTotales() << endl;
+    cout << "Núcleo con menos procesos en espera: " << nucleos.buscarMenosCola()->numeroProcesosTotales() << endl;
 }
 
 void Sistema::mostrarNumNucleos()

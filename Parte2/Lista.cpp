@@ -165,7 +165,7 @@ Nucleo *Lista::buscarMenosCola()
     lnodo menor = cima;
     while (actual != nullptr)
     {
-        if (actual->valor.numeroProcesosEnEspera() < menor->valor.numeroProcesosEnEspera())
+        if (actual->valor.numeroProcesosTotales() < menor->valor.numeroProcesosTotales())
         {
             menor = actual;
         }
@@ -186,7 +186,7 @@ Nucleo *Lista::buscarMasCola()
     lnodo mayor = cima;
     while (actual != nullptr)
     {
-        if (actual->valor.numeroProcesosEnEspera() > mayor->valor.numeroProcesosEnEspera())
+        if (actual->valor.numeroProcesosTotales() > mayor->valor.numeroProcesosTotales())
         {
             mayor = actual;
         }

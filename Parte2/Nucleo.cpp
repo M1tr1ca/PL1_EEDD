@@ -5,35 +5,36 @@ using namespace std;
 
 Nucleo::Nucleo(int id)
 {
-    id = id;
-    procesoActual = nullptr;
+    ID = id;
+    procesoActual = Proceso();
 }
 
 Nucleo::Nucleo()
 {
     srand(time(0)); // Semilla para garantizar números aleatorios
-    id = (rand() % 1000) + 1;
+    ID = (rand() % 1000) + 1;
+    procesoActual = Proceso();
 }
 
 Nucleo::~Nucleo()
 {
-    delete procesoActual;
+    // Destructor
 }
 
 // Obtener el ID del núcleo
 int Nucleo::getId()
 {
-    return id;
+    return ID;
 }
 
 // Obtener el proceso que se está ejecutando actualmente
-Proceso *Nucleo::getProcesoActual()
+Proceso Nucleo::getProcesoActual()
 {
     return procesoActual;
 }
 
 // Asignar un proceso para ejecutarse en el núcleo
-void Nucleo::setProcesoActual(Proceso *proceso)
+void Nucleo::setProcesoActual(Proceso proceso)
 {
     procesoActual = proceso;
 }
@@ -51,7 +52,7 @@ void Nucleo::añadirEsperaPrioridad(Proceso proceso)
     {
         caux.encolar(colaEspera.desencolar());
     }
-    colaEspera = caux;
+    this->colaEspera = caux;
 }
 
 // Obtener y eliminar el primer proceso de la cola de espera
@@ -63,29 +64,35 @@ Proceso Nucleo::obtenerProcesoDeCola()
 // Consultar si el núcleo está ocupado
 bool Nucleo::estaOcupado()
 {
-    return procesoActual != nullptr; // Está ocupado si hay un proceso asignado
+    return procesoActual.getPID() != 0; // Está ocupado si hay un proceso asignado
 }
 
 // Consultar el número de procesos en la cola de espera
-int Nucleo::numeroProcesosEnEspera()
+int Nucleo::numeroProcesosEspera()
 {
-    return colaEspera.getLongitud() + estaOcupado() ? 1 : 0;
+    return colaEspera.getLongitud();
+}
+
+// Consultar el número de procesos en el núcleo
+int Nucleo::numeroProcesosTotales()
+{
+    return colaEspera.getLongitud() + (estaOcupado() ? 1 : 0);
 }
 
 // Mostrar información sobre el núcleo
 void Nucleo::mostrarInformacion()
 {
-    cout << "Nucleo " << id << ": "
+    cout << "Nucleo " << ID << ": "
          << (estaOcupado() ? "Ocupado" : "Libre") << endl;
 
     if (estaOcupado())
     {
-        cout << "Proceso en ejecución (PID): " << procesoActual->getPID() << endl;
+        cout << "Proceso en ejecución (PID): " << procesoActual.getPID() << endl;
     }
 
-    if (numeroProcesosEnEspera() > 0)
+    if (numeroProcesosEspera() > 0)
     {
-        cout << "Procesos en espera: " << numeroProcesosEnEspera() << endl;
+        cout << "Procesos en espera: " << numeroProcesosEspera() << endl;
         colaEspera.mostrarCola(); // Asumiendo que Cola tiene un método `mostrarCola()`
     }
     else
@@ -96,8 +103,8 @@ void Nucleo::mostrarInformacion()
 
 void Nucleo::reducirTiempoVida()
 {
-    if (procesoActual != nullptr)
+    if (procesoActual.getPID() != 0)
     {
-        procesoActual->reducirTiempoVida();
+        procesoActual.reducirTiempoVida();
     }
 }

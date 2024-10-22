@@ -16,10 +16,11 @@ void mostrarMenu()
     cout << "|     |  1. Crear la pila de procesos                      |     |" << endl;
     cout << "|     |  2. Mostrar procesos en la pila                    |     |" << endl;
     cout << "|     |  3. Borrar pila de procesos                        |     |" << endl;
-    cout << "|     |  4. Mostrar cola de espera                         |     |" << endl;
-    cout << "|     |  5. Mostrar procesos en ejecucion                  |     |" << endl;
-    cout << "|     |  6. Simular el paso de N minutos                   |     |" << endl;
-    cout << "|     |  7. Ejecutar todos los procesos                    |     |" << endl;
+    cout << "|     |  4. Simular el paso de N minutos                   |     |" << endl;
+    cout << "|     |  5. Mostrar datos lista nucleos                    |     |" << endl;
+    cout << "|     |  6. Consultar núcleos con más y menos procesos     |     |" << endl;
+    cout << "|     |  7. Consultar número de nucleos operativos         |     |" << endl;
+    cout << "|     |  8. Ejecutar todos los procesos                    |     |" << endl;
     cout << "|     |  0. Salir                                          |     |" << endl;
     cout << "|     +----------------------------------------------------+     |" << endl;
     cout << "|                                                                |" << endl;

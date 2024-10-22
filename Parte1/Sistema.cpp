@@ -109,12 +109,14 @@ void Sistema::simularMinutos(int n)
                 if (nucleos[j]->getTiempoVida() == 0)
                 {
                     cout << "Proceso " << nucleos[j]->getPID() << " terminó de ejecutarse" << endl;
+                    delete nucleos[j];
                     nucleos[j] = NULL;
                     nucleosLibres++;
                 }
             }
         }
 
+        // Asignar procesos a los núcleos libres
         while (!colaEspera.esVacia() && nucleosLibres > 0)
         {
             Proceso proceso = colaEspera.desencolar();
@@ -125,6 +127,7 @@ void Sistema::simularMinutos(int n)
                     nucleos[k] = new Proceso(proceso);
                     nucleosLibres--;
                     cout << "Proceso " << proceso.getPID() << " asignado al núcleo " << k + 1 << endl;
+                    proceso.setNucleo(k + 1);
                     break;
                 }
             }
