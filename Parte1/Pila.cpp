@@ -32,18 +32,16 @@ void Pila::apilar(Proceso p)
 
 Proceso Pila::desapilar()
 {
-    if (cima)
-    {
-        Proceso elemento = cima->valor;
-        NodoPila *aux = cima;
-        cima = cima->siguiente;
-        delete aux;
-        return elemento;
-    }
-    else
+    if (esVacia())
     {
         throw runtime_error("La pila está vacía");
     }
+
+    Proceso elemento = cima->valor;
+    NodoPila *aux = cima;
+    cima = cima->siguiente;
+    delete aux;
+    return elemento;
 }
 
 Proceso Pila::primero()
@@ -52,6 +50,7 @@ Proceso Pila::primero()
     {
         throw runtime_error("La pila está vacía");
     }
+
     return cima->valor; // Retorna el valor en la cima de la pila
 }
 

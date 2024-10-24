@@ -54,7 +54,7 @@ int main()
             sistema.borrarPila();
             break;
         case 4:
-            sistema.mostrarNucleos();
+            sistema.mostrarCola();
             break;
         case 5:
             sistema.mostrarEjecutando();

@@ -7,7 +7,6 @@ using namespace std;
 NodoPila::NodoPila()
 {
     valor = Proceso();
-    ;
     siguiente = NULL;
 }
 

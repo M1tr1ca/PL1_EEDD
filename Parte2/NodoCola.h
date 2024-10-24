@@ -16,5 +16,6 @@ public:
     NodoCola(Proceso elemento, NodoCola *sig = NULL);
     ~NodoCola();
 };
+typedef NodoCola *cnodo;
 
 #endif // NODOCOLA_H

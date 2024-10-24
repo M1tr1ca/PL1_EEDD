@@ -48,7 +48,7 @@ void Sistema::borrarPila()
     cout << "Pila de procesos borrada.\n";
 }
 
-void Sistema::mostrarNucleos()
+void Sistema::mostrarCola()
 {
     if (!colaEspera.esVacia())
     {
@@ -64,19 +64,26 @@ void Sistema::mostrarNucleos()
 
 void Sistema::mostrarEjecutando()
 {
-    cout << nucleosLibres << " núcleos libres" << endl;
-    cout << "Procesos en ejecución:" << endl;
-    for (int i = 0; i < TOTAL_NUCLEOS; i++)
+    if (nucleosLibres == 3)
     {
-        if (nucleos[i] != NULL)
+        cout << "No hay procesos en ejecución" << endl;
+    }
+    else
+    {
+        cout << nucleosLibres << " núcleos libres\n" << endl;
+        cout << "Procesos en ejecución:\n" << endl;
+        for (int i = 0; i < TOTAL_NUCLEOS; i++)
         {
-            cout << "Núcleo " << i + 1 << ": " << endl;
-            nucleos[i]->mostrarInformacion();
-            cout << endl;
-        }
-        else
-        {
-            cout << "Núcleo " << i + 1 << ": Vacío" << endl;
+            if (nucleos[i] != NULL)
+            {
+                cout << "Núcleo " << i + 1 << ": " << endl;
+                nucleos[i]->mostrarInformacion();
+                cout << endl;
+            }
+            else
+            {
+                cout << "Núcleo " << i + 1 << ": Vacío" << endl;
+            }
         }
     }
 }
@@ -137,10 +144,6 @@ void Sistema::simularMinutos(int n)
 
 void Sistema::ejecutarProcesos()
 {
-    // while (!pilaProcesos.esVacia() && !colaEspera.esVacia())
-    // {
-    //     simularMinutos(1);
-    // }
     while (!pilaProcesos.esVacia())
     {
         simularMinutos(1);
@@ -188,9 +191,9 @@ void Sistema::procesoEntraEspera(Proceso p)
 void Sistema::mostrarEstado()
 {
     cout << "Estado actual del sistema:\n";
-    cout << "Núcleos libres: " << nucleosLibres << endl;
     cout << "Procesos en cola de espera: ";
     colaEspera.mostrarCola();
     cout << endl;
+    cout << "Estado de los núcleos:\n";
     mostrarEjecutando();
 }

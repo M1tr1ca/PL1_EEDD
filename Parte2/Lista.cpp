@@ -7,8 +7,8 @@ using namespace std;
 
 Lista::Lista()
 {
-    cima = nullptr;
-    longitud = 0;
+    cima = new NodoLista();
+    longitud = 1;
 }
 
 Lista::~Lista()
@@ -103,7 +103,7 @@ void Lista::mostrarTodo()
     lnodo actual = cima;
     while (actual != nullptr)
     {
-        cima->valor.mostrarInformacion();
+        actual->valor.mostrarInformacion();
         actual = actual->siguiente;
     }
     cout << endl;
@@ -146,10 +146,21 @@ void Lista::reducirTiempoVida()
         throw runtime_error("La lista está vacía");
     }
 
+    // Recorrer la lista y reducir el tiempo de vida de cada núcleo
     lnodo actual = cima;
     while (actual != nullptr)
     {
         actual->valor.reducirTiempoVida();
+        actual = actual->siguiente;
+    }
+    
+    // Sacar procesos terminados de ejecutar y meter los de la cola de espera
+    actual = cima;
+    while (actual != nullptr)
+    {
+        if (actual->valor.getProcesoActual().getPID()!=0 && actual->valor.getProcesoActual().getTiempoVida() == 0) {
+            actual->valor.terminarProcesoActual();
+        }
         actual = actual->siguiente;
     }
 }
@@ -219,29 +230,34 @@ int Lista::nucleosLibres()
 
 void Lista::eliminarNucleosVacios()
 {
-    if (esVacia())
-    {
-        throw runtime_error("La lista está vacía");
-    }
-
     lnodo actual = cima;
-    while (!actual->valor.estaOcupado())
+    while (!esVacia() && !actual->valor.estaOcupado())
     {
         lnodo temp = actual;
         cima = actual->siguiente;
         actual = actual->siguiente;
+        longitud--;
         delete temp;
     }
 
-    while (actual->siguiente != nullptr)
+    if (esVacia())
     {
-        if (!actual->siguiente->valor.estaOcupado())
+        cima = new NodoLista(Nucleo(), nullptr);
+    }
+    else
+    {
+
+        while (actual->siguiente != nullptr)
         {
-            lnodo temp = actual->siguiente;
-            actual->siguiente = actual->siguiente->siguiente;
-            delete temp;
+            if (!actual->siguiente->valor.estaOcupado())
+            {
+                lnodo temp = actual->siguiente;
+                actual->siguiente = actual->siguiente->siguiente;
+                longitud--;
+                delete temp;
+            }
+            actual = actual->siguiente;
         }
-        actual = actual->siguiente;
     }
 }
 

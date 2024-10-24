@@ -93,7 +93,7 @@ void Nucleo::mostrarInformacion()
     if (numeroProcesosEspera() > 0)
     {
         cout << "Procesos en espera: " << numeroProcesosEspera() << endl;
-        colaEspera.mostrarCola(); // Asumiendo que Cola tiene un método `mostrarCola()`
+        colaEspera.mostrarCola();
     }
     else
     {
@@ -106,5 +106,19 @@ void Nucleo::reducirTiempoVida()
     if (procesoActual.getPID() != 0)
     {
         procesoActual.reducirTiempoVida();
+    }
+}
+
+void Nucleo::terminarProcesoActual()
+{
+    cout << "Proceso " << procesoActual.getPID() << " terminado en el núcleo " << ID << endl;
+    if (colaEspera.esVacia())
+    {
+        procesoActual = Proceso();
+    }
+    else
+    {
+        procesoActual = colaEspera.desencolar();
+        cout << "Proceso " << procesoActual.getPID() << " entró en ejecución en el núcleo " << ID << endl;
     }
 }

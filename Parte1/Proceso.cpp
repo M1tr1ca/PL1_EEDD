@@ -16,6 +16,7 @@ Proceso::Proceso(int pid, int ppid, int ini, int vida, int pri, int nuc)
 // Constructor vacío
 Proceso::Proceso()
 {
+    nucleo = -1;
 }
 
 Proceso::~Proceso()
@@ -29,7 +30,7 @@ Proceso::~Proceso()
     int prioridad;  // Prioridad del proceso (0-9)
     int nucleo;     // Núcleo asignado para la ejecución */
 
-// Acá todos los métodos q haga falta
+
 void Proceso::mostrarInformacion()
 {
     cout << "PID: " << PID << endl

@@ -1,10 +1,13 @@
 // main.cpp
 #include <iostream>
 #include "Sistema.h"
+
 using namespace std;
+
 
 void mostrarMenu()
 {
+
     cout << "+----------------------------------------------------------------+" << endl;
     cout << "|                     +--------------------+                     |" << endl;
     cout << "|                     |    * PROCESSES *   |                     |" << endl;
@@ -61,7 +64,7 @@ int main()
             sistema.simularMinutos(n);
             break;
         case 5:
-            sistema.mostrarNucleos();
+            sistema.mostrarEjecutando();
             break;
         case 6:
             sistema.mostrarMasMenos();

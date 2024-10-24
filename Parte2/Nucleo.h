@@ -39,6 +39,9 @@ public:
     // Mostrar información del núcleo
     void mostrarInformacion();
     void reducirTiempoVida(); // Reduce el tiempo restante del proceso actual
+    
+    // Terminar proceso y meter el siguiente de la cola
+    void terminarProcesoActual();
 };
 
 #endif // NUCLEO_H
