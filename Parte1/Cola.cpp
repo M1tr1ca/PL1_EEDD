@@ -5,8 +5,8 @@ using namespace std;
 
 Cola::Cola()
 {
-    primero = NULL;
-    ultimo = NULL;
+    primero = nullptr;
+    ultimo = nullptr;
     longitud = 0;
 }
 Cola::~Cola()
@@ -44,15 +44,13 @@ Proceso Cola::desencolar()
 
         if ((primero == ultimo) && (primero->siguiente == NULL))
         {
-            primero = NULL;
-            ultimo = NULL;
-            aux->siguiente = NULL;
+            primero = nullptr;
+            ultimo = nullptr;
             delete (aux);
         }
         else
         {
             primero = primero->siguiente;
-            aux->siguiente = NULL;
             delete (aux);
         }
         longitud--;

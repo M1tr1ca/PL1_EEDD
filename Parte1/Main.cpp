@@ -3,11 +3,13 @@
 #include "Sistema.h"
 using namespace std;
 
-void mostrarMenu()
+void mostrarMenu(int minutos)
 {
+    int horas = minutos / 60 % 24;
+    int min = minutos % 60;
     cout << "+----------------------------------------------------------------+" << endl;
     cout << "|                      +--------------------+                    |" << endl;
-    cout << "|                      |   * PROCESSES *    |                    |" << endl;
+    cout << "|                      |     * " << (horas >= 10 ? "" : "0") << horas << ":" << (min >= 10 ? "" : "0") << min << " *      |                    |" << endl;
     cout << "|                      +--------------------+                    |" << endl;
     cout << "|                                                                |" << endl;
     cout << "|     +----------------------------------------------------+     |" << endl;
@@ -36,7 +38,7 @@ int main()
 
     do
     {
-        mostrarMenu();
+        mostrarMenu(sistema.getMinutos());
         cout << "          +------------------------------------------+          " << endl;
         cout << "                Selecciona una opcion: ";
         cin >> opcion;

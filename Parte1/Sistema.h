@@ -18,6 +18,7 @@ private:
     int nucleosLibres; // salen los núcleos libres q hay
     const int TOTAL_NUCLEOS = 3;
     Proceso *nucleos[3]; // Núcleos del sistema
+    int minutos;         // Minutos transcurridos
 
 public:
     Sistema();
@@ -31,4 +32,5 @@ public:
     void mostrarEstado();
     void nuevoProceso(Proceso proceso);
     void procesoEntraEspera(Proceso proceso);
+    int getMinutos();
 };

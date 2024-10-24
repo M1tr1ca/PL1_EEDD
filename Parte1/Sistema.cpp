@@ -6,6 +6,7 @@
 Sistema::Sistema()
 {
     nucleosLibres = TOTAL_NUCLEOS;
+    minutos = 0;
     for (int i = 0; i < TOTAL_NUCLEOS; i++)
     {
         nucleos[i] = NULL;
@@ -96,6 +97,7 @@ void Sistema::simularMinutos(int n)
 
         // Simular los procesos en la pila
         cout << "Simulando minuto " << i + 1 << "..." << endl;
+        minutos++;
         if (!pilaProcesos.esVacia())
         {
             pilaProcesos.reducirTiempoInicio();
@@ -196,4 +198,9 @@ void Sistema::mostrarEstado()
     cout << endl;
     cout << "Estado de los núcleos:\n";
     mostrarEjecutando();
+}
+
+int Sistema::getMinutos()
+{
+    return minutos;
 }
