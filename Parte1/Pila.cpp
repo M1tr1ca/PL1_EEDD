@@ -12,12 +12,6 @@ Pila::Pila()
 
 Pila::~Pila()
 {
-    while (cima)
-    {
-        pnodo temp = cima;
-        cima = cima->siguiente;
-        delete temp;
-    }
 }
 
 bool Pila::esVacia()

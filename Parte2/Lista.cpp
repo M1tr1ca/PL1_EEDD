@@ -13,12 +13,6 @@ Lista::Lista()
 
 Lista::~Lista()
 {
-    while (cima)
-    {
-        lnodo temp = cima;
-        cima = cima->siguiente;
-        delete temp;
-    }
 }
 
 bool Lista::esVacia()
