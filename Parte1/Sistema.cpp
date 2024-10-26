@@ -96,7 +96,7 @@ void Sistema::simularMinutos(int n)
     {
 
         // Simular los procesos en la pila
-        cout << "Simulando minuto " << i + 1 << "..." << endl;
+        cout << "Simulando minuto " << minutos << "..." << endl;
         minutos++;
         if (!pilaProcesos.esVacia())
         {

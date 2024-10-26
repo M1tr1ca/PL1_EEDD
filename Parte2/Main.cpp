@@ -4,14 +4,14 @@
 
 using namespace std;
 
-
-void mostrarMenu()
+void mostrarMenu(int minutos)
 {
-
+    int horas = minutos / 60 % 24;
+    int min = minutos % 60;
     cout << "+----------------------------------------------------------------+" << endl;
-    cout << "|                     +--------------------+                     |" << endl;
-    cout << "|                     |    * PROCESSES *   |                     |" << endl;
-    cout << "|                     +--------------------+                     |" << endl;
+    cout << "|                      +--------------------+                    |" << endl;
+    cout << "|                      |     * " << (horas >= 10 ? "" : "0") << horas << ":" << (min >= 10 ? "" : "0") << min << " *      |                    |" << endl;
+    cout << "|                      +--------------------+                    |" << endl;
     cout << "|                                                                |" << endl;
     cout << "|     +----------------------------------------------------+     |" << endl;
     cout << "|     |                   SYSTEM MENU                      |     |" << endl;
@@ -38,13 +38,18 @@ int main()
     Sistema sistema;
     int opcion;
 
+    cout << "\n===================================================================" << endl;
+    cout << "ADVERTENCIA: Ya se han creado 10 procesos en la pila de procesos." << endl;
+    cout << "Crear la pila de procesos añadirá los mismos 10 procesos a la pila.\n"
+         << endl;
+
     do
     {
-        mostrarMenu();
-        cout << "          +------------------------------------------+          " << endl;
+        mostrarMenu(sistema.getMinutos());
+        cout << "           +------------------------------------------+          " << endl;
         cout << "                Selecciona una opcion: ";
         cin >> opcion;
-        cout << "          +------------------------------------------+          " << endl;
+        cout << "           +------------------------------------------+          " << endl;
 
         switch (opcion)
         {

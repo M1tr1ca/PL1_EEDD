@@ -21,7 +21,7 @@ Cola::~Cola()
 
 void Cola::encolar(Proceso elemento)
 {
-    NodoCola *nuevo_nodo = new NodoCola(elemento);
+    NodoCola *nuevo_nodo = new NodoCola(elemento, nullptr);
     if (esVacia())
     {
         primero = nuevo_nodo;

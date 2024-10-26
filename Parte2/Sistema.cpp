@@ -9,6 +9,7 @@ Sistema::Sistema()
 {
     pilaProcesos = Pila();
     nucleos = Lista();
+    minutos = 0;
     crearProcesos();
 }
 
@@ -60,7 +61,8 @@ void Sistema::simularMinutos(int n)
     for (int i = 0; i < n; i++)
     {
         // Simular los procesos en la pila
-        cout << "Simulando minuto " << i + 1 << "..." << endl;
+        cout << "Simulando minuto " << minutos << "..." << endl;
+        minutos++;
 
         // Simular los procesos en ejecución
         nucleos.reducirTiempoVida();
@@ -151,4 +153,9 @@ void Sistema::mostrarMasMenos()
 void Sistema::mostrarNumNucleos()
 {
     cout << "Número de núcleos: " << nucleos.getLongitud() << endl;
+}
+
+int Sistema::getMinutos()
+{
+    return minutos;
 }

@@ -15,6 +15,7 @@ class Sistema
 private:
     Pila pilaProcesos; // Pila de procesos ordenados por inicio
     Lista nucleos;     // Lista de procesos en ejecucion
+    int minutos;       // Minutos transcurridos
 
 public:
     Sistema();
@@ -29,4 +30,5 @@ public:
     void procesoEntraEspera(Proceso proceso);
     void mostrarMasMenos();
     void mostrarNumNucleos();
+    int getMinutos();
 };
