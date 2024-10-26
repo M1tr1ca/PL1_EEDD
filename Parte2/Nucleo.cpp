@@ -7,6 +7,7 @@ Nucleo::Nucleo(int id)
 {
     ID = id;
     procesoActual = Proceso();
+    colaEspera = Cola();
 }
 
 Nucleo::Nucleo()
@@ -14,6 +15,7 @@ Nucleo::Nucleo()
     srand(time(0)); // Semilla para garantizar números aleatorios
     ID = (rand() % 1000) + 1;
     procesoActual = Proceso();
+    colaEspera = Cola();
 }
 
 Nucleo::~Nucleo()
@@ -64,7 +66,7 @@ Proceso Nucleo::obtenerProcesoDeCola()
 // Consultar si el núcleo está ocupado
 bool Nucleo::estaOcupado()
 {
-    return procesoActual.getPID() != 0; // Está ocupado si hay un proceso asignado
+    return procesoActual.getPID() != -1; // Está ocupado si hay un proceso asignado
 }
 
 // Consultar el número de procesos en la cola de espera
@@ -103,7 +105,7 @@ void Nucleo::mostrarInformacion()
 
 void Nucleo::reducirTiempoVida()
 {
-    if (procesoActual.getPID() != 0)
+    if (procesoActual.getPID() != -1)
     {
         procesoActual.reducirTiempoVida();
     }

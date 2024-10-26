@@ -9,6 +9,7 @@ Cola::Cola()
     ultimo = nullptr;
     longitud = 0;
 }
+
 Cola::~Cola()
 {
     while (ultimo)

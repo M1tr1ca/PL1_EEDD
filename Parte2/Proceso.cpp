@@ -16,7 +16,11 @@ Proceso::Proceso(int pid, int ppid, int ini, int vida, int pri, int nuc)
 // Constructor vacío
 Proceso::Proceso()
 {
-    PID = 0;
+    PID = -1;
+    PPID = -1;
+    inicio = -1;
+    tiempoVida = -1;
+    prioridad = -1;
     nucleo = -1;
 }
 

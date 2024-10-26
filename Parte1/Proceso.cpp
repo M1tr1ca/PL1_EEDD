@@ -16,6 +16,7 @@ Proceso::Proceso(int pid, int ppid, int ini, int vida, int pri, int nuc)
 // Constructor vacío
 Proceso::Proceso()
 {
+    PID = 0;
     nucleo = -1;
 }
 
