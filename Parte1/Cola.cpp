@@ -46,12 +46,12 @@ Proceso Cola::desencolar()
         {
             primero = nullptr;
             ultimo = nullptr;
-            delete (aux);
+            delete aux;
         }
         else
         {
             primero = primero->siguiente;
-            delete (aux);
+            delete aux;
         }
         longitud--;
         return elemento;
