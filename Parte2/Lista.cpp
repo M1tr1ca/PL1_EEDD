@@ -103,9 +103,11 @@ void Lista::mostrarTodo()
     lnodo actual = cima;
     while (actual != NULL)
     {
+        cout << "---------------------------------" << endl;
         actual->valor.mostrarInformacion();
         actual = actual->siguiente;
     }
+    cout << "---------------------------------" << endl;
     cout << endl;
 }
 

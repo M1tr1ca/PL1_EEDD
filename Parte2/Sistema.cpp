@@ -33,7 +33,7 @@ void Sistema::mostrarPila()
 {
     if (!pilaProcesos.esVacia())
     {
-        cout << "Procesos en la pila:" << endl;
+        cout << "Procesos en la pila:\n" << endl;
         pilaProcesos.mostrarTodo();
     }
     else
@@ -51,8 +51,10 @@ void Sistema::borrarPila()
 
 void Sistema::mostrarEjecutando()
 {
-    cout << "Estado de los núcleos:" << endl;
+    cout << "Estado de los núcleos:\n"
+         << endl;
     mostrarNumNucleos();
+    cout << endl;
     nucleos.mostrarTodo();
 }
 
@@ -62,7 +64,7 @@ void Sistema::simularMinutos(int n)
     for (int i = 0; i < n; i++)
     {
         // Simular los procesos en la pila
-        cout << "Simulando minuto " << minutos << "..." << endl;
+        cout << "Simulando minuto " << minutos << "...         " << endl;
         minutos++;
 
         // Simular los procesos en ejecución
@@ -144,10 +146,13 @@ void Sistema::mostrarMasMenos()
 {
     Nucleo *n = nucleos.buscarMasCola();
     Nucleo *n2 = nucleos.buscarMenosCola();
-    cout << "Núcleo con más procesos en espera: " << n->getId() << endl
-         << "Tiene: " << n->numeroProcesosTotales() << endl;
-    cout << "Núcleo con menos procesos en espera: " << n2->getId() << endl
-         << "Tiene: " << n2->numeroProcesosTotales() << endl;
+    cout << "---------------------------------" << endl;
+    cout << "Núcleo con más procesos en espera: " << n->getId() << endl;
+    n->mostrarInformacion();
+    cout << "---------------------------------" << endl;
+    cout << "Núcleo con menos procesos en espera: " << n2->getId() << endl;
+    n2->mostrarInformacion();
+    cout << "---------------------------------" << endl;
 }
 
 void Sistema::mostrarNumNucleos()

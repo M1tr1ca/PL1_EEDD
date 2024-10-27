@@ -1,9 +1,27 @@
-El destructor de pila y el de cola. En uno pasamos por cada elemento y lo destruimos y en el otro no.
-Al desapilar y desencolar hay que hacer que el puntero al siguiente apunto a null?
+# PL1
+
+## ⚠️ Consideraciones antes de ejecutar el programa
+
+Al iniciar el programa ya se crean 10 procesos.
+Estos están creados manualmente dentro del código.
+La opción de crear la pila de procesos añadirá esos mismos 10 procesos a la pila.
+
+## 🚀 Ejecución
+(Dentro de sus respectivas carpetas)
+
+El programa se puede compilar con `g++ \*.cpp -o main`
+Y ejecutar con `./main.exe`
+
+O usando el Makefile.
+`make release`
+`make debug`
+`make valgrind`
+`make valgrind-summary`
+`make clean`
 
 
+## 👥 Autores
 
-
-Qutar variables que sean constructores por defecto 
-Poner nombres de variable que describan mejor
-Comentarios coherentes
+Javier Macías Palazuelos 
+&
+David Nicolás Mitrică

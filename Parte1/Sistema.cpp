@@ -34,7 +34,8 @@ void Sistema::mostrarPila()
 {
     if (!pilaProcesos.esVacia())
     {
-        cout << "Procesos en la pila:" << endl;
+        cout << "Procesos en la pila:\n"
+             << endl;
         pilaProcesos.mostrarTodo();
     }
     else
@@ -54,7 +55,8 @@ void Sistema::mostrarCola()
 {
     if (!colaEspera.esVacia())
     {
-        cout << "Procesos en la cola:" << endl;
+        cout << "Procesos en la cola:\n"
+             << endl;
         // Muestra solo el primer elemento
         colaEspera.mostrarCola();
     }
@@ -72,23 +74,23 @@ void Sistema::mostrarEjecutando()
     }
     else
     {
-        cout << nucleosLibres << " núcleo" << (nucleosLibres == 1 ? "" : "s") << " libre" << (nucleosLibres == 1 ? "" : "s") << "\n"
-             << endl;
         cout << "Procesos en ejecución:\n"
              << endl;
+        cout << nucleosLibres << " núcleo" << (nucleosLibres == 1 ? "" : "s") << " libre" << (nucleosLibres == 1 ? "" : "s") << endl;
         for (int i = 0; i < TOTAL_NUCLEOS; i++)
         {
+            cout << "---------------------------------" << endl;
             if (nucleos[i] != NULL)
             {
                 cout << "Núcleo " << i + 1 << ": " << endl;
                 nucleos[i]->mostrarInformacion();
-                cout << endl;
             }
             else
             {
                 cout << "Núcleo " << i + 1 << ": Vacío" << endl;
             }
         }
+        cout << "---------------------------------" << endl;
     }
 }
 

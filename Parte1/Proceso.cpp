@@ -1,5 +1,6 @@
 #include "Proceso.h"
 #include <iostream>
+#include <iomanip>
 using namespace std;
 
 // Constructor con cositas dentro
@@ -38,12 +39,12 @@ Proceso::~Proceso()
 
 void Proceso::mostrarInformacion()
 {
-    cout << "PID: " << PID << endl
-         << "PPID: " << PPID << endl
-         << "Minutos hasta inicio: " << inicio << " minutos " << endl
-         << "Tiempo de vida: " << tiempoVida << " minutos" << endl
-         << "Prioridad: " << prioridad << endl
-         << "Núcleo: " << nucleo << endl;
+    cout << "PID: " << PID << " | "
+         << "PPID: " << PPID << " | "
+         << "Minutos hasta inicio: " << setw(3) << inicio << " minutos | "
+         << "Tiempo de vida: " << setw(3) << tiempoVida << " minutos | "
+         << "Prioridad: " << prioridad << " | "
+         << "Núcleo: " << setw(2) << nucleo << endl;
 }
 
 // Getters

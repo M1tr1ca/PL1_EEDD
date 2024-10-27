@@ -95,7 +95,7 @@ void Cola::mostrarCola()
     {
         while (aux)
         {
-            cout << aux->elemento.getPID() << endl;
+            aux->elemento.mostrarInformacion();
             aux = aux->siguiente;
         }
     }

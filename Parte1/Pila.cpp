@@ -65,7 +65,6 @@ void Pila::mostrarTodo()
     while (actual != NULL)
     {
         actual->valor.mostrarInformacion(); // Asumiendo que 'Proceso' tiene sobrecargado el operador '<<'
-        cout << endl;
         actual = actual->siguiente;
     }
 }
