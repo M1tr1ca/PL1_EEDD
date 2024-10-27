@@ -8,12 +8,13 @@ class NodoLista
 private:
     Nucleo valor;
     NodoLista *siguiente;
-    friend class Lista; // Accede a los atributos privados de Nodo lista
+    friend class Lista;
+
 public:
     NodoLista(Nucleo valor, NodoLista *sig = NULL);
-    NodoLista(); // Constructor por defecto
-    ~NodoLista(); // destructor de la clase para eliberar espacio de la memoria.
+    NodoLista();
+    ~NodoLista();
 };
-typedef NodoLista *lnodo; // aquí establece un alias a Nodo lista para simplicar el código
+typedef NodoLista *lnodo;
 
 #endif // NODOPILA_H

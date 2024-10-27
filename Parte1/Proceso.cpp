@@ -26,6 +26,7 @@ Proceso::Proceso()
 
 Proceso::~Proceso()
 {
+    // dtor
 }
 
 /*  int PID;        // Identificador del proceso
@@ -35,15 +36,14 @@ Proceso::~Proceso()
     int prioridad;  // Prioridad del proceso (0-9)
     int nucleo;     // Núcleo asignado para la ejecución */
 
-
 void Proceso::mostrarInformacion()
 {
     cout << "PID: " << PID << endl
-        << "PPID: " << PPID << endl
-        << "Minutos hasta inicio: " << inicio << " minutos " << endl
-        << "Tiempo de vida: " << tiempoVida << " minutos" << endl
-        << "Prioridad: " << prioridad << endl
-        << "Núcleo: " << nucleo << endl;
+         << "PPID: " << PPID << endl
+         << "Minutos hasta inicio: " << inicio << " minutos " << endl
+         << "Tiempo de vida: " << tiempoVida << " minutos" << endl
+         << "Prioridad: " << prioridad << endl
+         << "Núcleo: " << nucleo << endl;
 }
 
 // Getters

@@ -94,7 +94,7 @@ void Nucleo::mostrarInformacion()
 
     if (estaOcupado())
     {
-        cout << "Proceso en ejecución (PID): " << puntProcesoActual->getPID() << endl;
+        puntProcesoActual->mostrarInformacion();
     }
 
     if (numeroProcesosEspera() > 0)

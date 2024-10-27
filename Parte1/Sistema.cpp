@@ -16,17 +16,18 @@ Sistema::Sistema()
 
 void Sistema::crearProcesos()
 {
+    cout << "Creando 10 procesos..." << endl;
     // Crear 10 procesos manualmente
-    nuevoProceso(Proceso(1001, 1, 10, 30, 2, 1));
-    nuevoProceso(Proceso(1002, 1, 5, 20, 1, 2));
-    nuevoProceso(Proceso(1003, 1, 15, 25, 3, 1));
-    nuevoProceso(Proceso(1004, 1, 3, 10, 0, 1));
-    nuevoProceso(Proceso(1005, 1, 12, 15, 4, 2));
-    nuevoProceso(Proceso(1006, 1, 8, 18, 1, 2));
-    nuevoProceso(Proceso(1007, 1, 20, 10, 2, 1));
-    nuevoProceso(Proceso(1008, 1, 25, 30, 3, 2));
-    nuevoProceso(Proceso(1009, 1, 14, 20, 0, 1));
-    nuevoProceso(Proceso(1010, 1, 18, 15, 1, 1));
+    nuevoProceso(Proceso(1001, 1, 10, 30, 2, -1));
+    nuevoProceso(Proceso(1002, 1, 5, 20, 1, -1));
+    nuevoProceso(Proceso(1003, 1, 15, 25, 3, -1));
+    nuevoProceso(Proceso(1004, 1, 3, 10, 0, -1));
+    nuevoProceso(Proceso(1005, 1, 12, 15, 4, -1));
+    nuevoProceso(Proceso(1006, 1, 8, 18, 1, -1));
+    nuevoProceso(Proceso(1007, 1, 20, 10, 2, -1));
+    nuevoProceso(Proceso(1008, 1, 25, 30, 3, -1));
+    nuevoProceso(Proceso(1009, 1, 14, 20, 0, -1));
+    nuevoProceso(Proceso(1010, 1, 18, 15, 1, -1));
 }
 
 void Sistema::mostrarPila()
@@ -71,7 +72,7 @@ void Sistema::mostrarEjecutando()
     }
     else
     {
-        cout << nucleosLibres << " núcleos libres\n"
+        cout << nucleosLibres << " núcleo" << (nucleosLibres == 1 ? "" : "s") << " libre" << (nucleosLibres == 1 ? "" : "s") << "\n"
              << endl;
         cout << "Procesos en ejecución:\n"
              << endl;
@@ -135,10 +136,10 @@ void Sistema::simularMinutos(int n)
             {
                 if (nucleos[k] == NULL)
                 {
+                    proceso.setNucleo(k + 1);
                     nucleos[k] = new Proceso(proceso);
                     nucleosLibres--;
                     cout << "Proceso " << proceso.getPID() << " asignado al núcleo " << k + 1 << endl;
-                    proceso.setNucleo(k + 1);
                     break;
                 }
             }
@@ -193,16 +194,6 @@ void Sistema::procesoEntraEspera(Proceso p)
     {
         colaEspera.encolar(caux.desencolar());
     }
-}
-
-void Sistema::mostrarEstado()
-{
-    cout << "Estado actual del sistema:\n";
-    cout << "Procesos en cola de espera: ";
-    colaEspera.mostrarCola();
-    cout << endl;
-    cout << "Estado de los núcleos:\n";
-    mostrarEjecutando();
 }
 
 int Sistema::getMinutos()

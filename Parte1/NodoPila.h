@@ -8,12 +8,13 @@ class NodoPila
 private:
     Proceso valor;
     NodoPila *siguiente;
-    friend class Pila; // Accede a los atributos privados de Nodo pila
+    friend class Pila;
+
 public:
-    NodoPila(); // Constructor por defecto
+    NodoPila();
     NodoPila(Proceso valor, NodoPila *sig = NULL);
-    ~NodoPila(); // destructor de la clase para eliberar espacio de la memoria.
+    ~NodoPila();
 };
-typedef NodoPila *pnodo; // aquí establece un alias a Nodo pila para simplicar el código
+typedef NodoPila *pnodo;
 
 #endif // NODOPILA_H

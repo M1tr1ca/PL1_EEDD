@@ -15,17 +15,18 @@ Sistema::Sistema()
 
 void Sistema::crearProcesos()
 {
+    cout << "Creando 10 procesos..." << endl;
     // Crear 10 procesos manualmente
-    nuevoProceso(Proceso(1001, 1, 10, 30, 2, 1));
-    nuevoProceso(Proceso(1002, 1, 5, 20, 1, 2));
-    nuevoProceso(Proceso(1003, 1, 15, 25, 3, 1));
-    nuevoProceso(Proceso(1004, 1, 3, 10, 0, 1));
-    nuevoProceso(Proceso(1005, 1, 12, 15, 4, 2));
-    nuevoProceso(Proceso(1006, 1, 8, 18, 1, 2));
-    nuevoProceso(Proceso(1007, 1, 20, 10, 2, 1));
-    nuevoProceso(Proceso(1008, 1, 25, 30, 3, 2));
-    nuevoProceso(Proceso(1009, 1, 14, 20, 0, 1));
-    nuevoProceso(Proceso(1010, 1, 18, 15, 1, 1));
+    nuevoProceso(Proceso(1001, 1, 10, 30, 2, -1));
+    nuevoProceso(Proceso(1002, 1, 5, 20, 1, -1));
+    nuevoProceso(Proceso(1003, 1, 15, 25, 3, -1));
+    nuevoProceso(Proceso(1004, 1, 3, 10, 0, -1));
+    nuevoProceso(Proceso(1005, 1, 12, 15, 4, -1));
+    nuevoProceso(Proceso(1006, 1, 8, 18, 1, -1));
+    nuevoProceso(Proceso(1007, 1, 20, 10, 2, -1));
+    nuevoProceso(Proceso(1008, 1, 25, 30, 3, -1));
+    nuevoProceso(Proceso(1009, 1, 14, 20, 0, -1));
+    nuevoProceso(Proceso(1010, 1, 18, 15, 1, -1));
 }
 
 void Sistema::mostrarPila()
@@ -50,8 +51,8 @@ void Sistema::borrarPila()
 
 void Sistema::mostrarEjecutando()
 {
-    cout << "Estdo de los núcleos:" << endl;
-    cout << "Hay " << nucleos.getLongitud() << " núcleos" << endl;
+    cout << "Estado de los núcleos:" << endl;
+    mostrarNumNucleos();
     nucleos.mostrarTodo();
 }
 
@@ -119,25 +120,24 @@ void Sistema::procesoEntraEspera(Proceso *p)
     if (n->numeroProcesosTotales() >= 3) // El proceso ejecutándose también cuenta
     {
         Nucleo nuevoNucleo;
+        p->setNucleo(nuevoNucleo.getId());
         nuevoNucleo.setProcesoActual(p);
         nucleos.izquierda(nuevoNucleo);
         cout << "Proceso " << p->getPID() << " entró en ejecución en el núcleo " << nuevoNucleo.getId() << endl;
     }
     else if (n->numeroProcesosTotales() == 0)
     {
+        p->setNucleo(n->getId());
         n->setProcesoActual(p);
         cout << "Proceso " << p->getPID() << " entró en ejecución en el núcleo " << n->getId() << endl;
     }
     else
     {
+        p->setNucleo(n->getId());
         n->añadirEsperaPrioridad(*p);
         cout << "Proceso " << p->getPID() << " entró en la cola de espera del núcleo " << n->getId() << endl;
+        delete p;
     }
-}
-
-void Sistema::mostrarEstado()
-{
-    nucleos.mostrarTodo();
 }
 
 void Sistema::mostrarMasMenos()
@@ -152,7 +152,8 @@ void Sistema::mostrarMasMenos()
 
 void Sistema::mostrarNumNucleos()
 {
-    cout << "Número de núcleos: " << nucleos.getLongitud() << endl;
+    int n = nucleos.getLongitud();
+    cout << "Hay " << n << " nucleo" << (n == 1 ? "" : "s") << endl;
 }
 
 int Sistema::getMinutos()

@@ -3,10 +3,6 @@ Al desapilar y desencolar hay que hacer que el puntero al siguiente apunto a nul
 
 
 
-Todo: 
-"hay 1 nucleos"
-Mensaje al crear la pila
-Tiempo global
 
 Qutar variables que sean constructores por defecto 
 Poner nombres de variable que describan mejor

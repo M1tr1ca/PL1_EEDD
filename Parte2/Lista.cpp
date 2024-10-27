@@ -251,15 +251,18 @@ void Lista::eliminarNucleosVacios()
         actual = cima;
         while (actual->siguiente != NULL)
         {
-            cout << "Núcleo " << actual->valor.getId() << " eliminado" << endl;
             if (!actual->siguiente->valor.estaOcupado())
             {
+                cout << "Núcleo " << actual->siguiente->valor.getId() << " eliminado" << endl;
                 lnodo temp = actual->siguiente;
                 actual->siguiente = actual->siguiente->siguiente;
                 longitud--;
                 delete temp;
             }
-            actual = actual->siguiente;
+            else
+            {
+                actual = actual->siguiente;
+            }
         }
     }
 }

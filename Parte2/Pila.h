@@ -11,12 +11,14 @@ private:
 public:
     Pila();
     ~Pila();
+
     bool esVacia();
     void apilar(Proceso p);
     Proceso primero();
     Proceso desapilar();
-    void mostrarTodo();
+
     void reducirTiempoInicio();
+    void mostrarTodo(); // No es correcto, se implementa para ver que está creada correctamente
 };
 
 #endif // PILA_H

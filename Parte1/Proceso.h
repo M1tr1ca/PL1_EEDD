@@ -13,16 +13,14 @@ private:
     int nucleo;     // Núcleo asignado para la ejecución
 
 public:
-    // Constructor
     Proceso(int pid, int ppid, int ini, int vida, int pri, int nuc);
-    // Constructor vacío
     Proceso();
-    // El destructor
     ~Proceso();
-    // Con esto se ven todos los atributos
+
     void mostrarInformacion();
     void reducirTiempoInicio();
     void reducirTiempoVida();
+
     // Getters
     int getPID();
     int getPPID();
@@ -30,6 +28,7 @@ public:
     int getTiempoVida();
     int getPrioridad();
     int getNucleo();
+
     // Setters
     void setPID(int PID);
     void setPPID(int PPID);

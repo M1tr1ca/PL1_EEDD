@@ -19,16 +19,15 @@ private:
 
 public:
     Sistema();
-    void crearProcesos();       // Punto 1, se CREA la PILA DE PROCESOS en el sistema, asi creas tu los datos manual
-    void mostrarPila();         // Punto 2, se MUESTRA la PILA DE PROCESOS que se inician en el SO
-    void borrarPila();          // Punto 3, se BORRA la PILA DE PROCESOS del SO
-    void mostrarEjecutando();   // Punto 5, MUESTRA los PROCESOS EN EJECUCI´NO
-    void simularMinutos(int n); // Punto 6, la n viene por teclado y procesos que pasan
-    void ejecutarProcesos();    // Punto 7, salen todos los procesos al finalizarse, los en espera también
-    void mostrarEstado();
-    void nuevoProceso(Proceso proceso);
-    void procesoEntraEspera(Proceso *proceso);
-    void mostrarMasMenos();
-    void mostrarNumNucleos();
+    void crearProcesos();                      // Punto 1, se CREA la PILA DE PROCESOS en el sistema, asi creas tu los datos manual
+    void mostrarPila();                        // Punto 2, se MUESTRA la PILA DE PROCESOS que se inician en el SO
+    void borrarPila();                         // Punto 3, se BORRA la PILA DE PROCESOS del SO
+    void simularMinutos(int n);                // Punto 4, la n viene por teclado y procesos que pasan
+    void mostrarEjecutando();                  // Punto 5, MUESTRA los PROCESOS EN EJECUCIÓN
+    void mostrarMasMenos();                    // Punto 6, MUESTRA el PROCESO con MAS y MENOS tiempo de EJECUCIÓN
+    void mostrarNumNucleos();                  // Punto 7, MUESTRA el NUMERO de NUCLEOS en EJECUCIÓN
+    void ejecutarProcesos();                   // Punto 8, EJECUTA los PROCESOS EN EJECUCIÓN
+    void nuevoProceso(Proceso proceso);        // AGREGA un NUEVO PROCESO a la LISTA de PROCESOS en EJECUCIÓN
+    void procesoEntraEspera(Proceso *proceso); // Pone un PROCESO en ESPERA en ORDEN de PRIORIDAD
     int getMinutos();
 };

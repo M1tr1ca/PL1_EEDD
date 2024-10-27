@@ -5,11 +5,10 @@
 
 class NodoCola
 {
-    friend class Cola;
-
 private:
-    NodoCola *siguiente;
     Proceso elemento;
+    NodoCola *siguiente;
+    friend class Cola;
 
 public:
     NodoCola();

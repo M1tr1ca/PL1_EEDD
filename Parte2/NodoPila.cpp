@@ -6,7 +6,6 @@ using namespace std;
 
 NodoPila::NodoPila()
 {
-    // valor = Proceso();
     siguiente = NULL;
 }
 
@@ -18,5 +17,5 @@ NodoPila::NodoPila(Proceso p, NodoPila *sig)
 
 NodoPila::~NodoPila()
 {
-    // Destructor
+    // dtor
 }

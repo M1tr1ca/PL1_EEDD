@@ -4,9 +4,7 @@
 
 NodoCola::NodoCola()
 {
-    elemento = Proceso();
     siguiente = NULL;
-    // Constructor por defecto
 }
 
 NodoCola::NodoCola(Proceso e, NodoCola *sig)

@@ -47,13 +47,11 @@ Proceso Cola::desencolar()
         {
             primero = NULL;
             ultimo = NULL;
-            aux->siguiente = NULL;
             delete aux;
         }
         else
         {
             primero = primero->siguiente;
-            aux->siguiente = NULL;
             delete aux;
         }
         longitud--;
