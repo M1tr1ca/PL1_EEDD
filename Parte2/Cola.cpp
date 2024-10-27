@@ -12,6 +12,12 @@ Cola::Cola()
 
 Cola::~Cola()
 {
+    while (ultimo)
+    {
+        NodoCola *temp = ultimo;
+        ultimo = ultimo->siguiente;
+        delete temp;
+    }
 }
 
 void Cola::encolar(Proceso elemento)
