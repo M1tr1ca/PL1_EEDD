@@ -45,5 +45,5 @@ make clean
 
 ## 👥 Autores
 
-- [@Jala304](https://github.com/Jala3400)
-- [@M1TR1CA](https://github.com/M1tr1ca)
+- [Javier Macías](https://github.com/Jala3400)
+- [David Mitrică](https://github.com/M1tr1ca)
