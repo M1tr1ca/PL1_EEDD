@@ -27,7 +27,7 @@ public:
     void ejecutarProcesos();    // Punto 7, salen todos los procesos al finalizarse, los en espera también
     void mostrarEstado();
     void nuevoProceso(Proceso proceso);
-    void procesoEntraEspera(Proceso proceso);
+    void procesoEntraEspera(Proceso *proceso);
     void mostrarMasMenos();
     void mostrarNumNucleos();
     int getMinutos();

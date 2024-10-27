@@ -9,7 +9,7 @@ class Nucleo
 {
 private:
     int ID;                 // Identificador del núcleo
-    Proceso procesoActual; // Proceso actualmente en ejecución en el núcleo
+    Proceso *puntProcesoActual; // Proceso actualmente en ejecución en el núcleo
     Cola colaEspera;        // Cola de procesos en espera
 
 public:
@@ -24,8 +24,8 @@ public:
     int getId();
 
     // Getter y setter para el proceso en ejecución
-    Proceso getProcesoActual();
-    void setProcesoActual(Proceso proceso);
+    Proceso *getPuntProcesoActual();
+    void setProcesoActual(Proceso *proceso);
 
     // Operaciones sobre la cola de espera
     void añadirEsperaPrioridad(Proceso proceso);

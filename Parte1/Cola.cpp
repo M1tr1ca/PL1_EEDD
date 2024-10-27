@@ -5,8 +5,8 @@ using namespace std;
 
 Cola::Cola()
 {
-    primero = nullptr;
-    ultimo = nullptr;
+    primero = NULL;
+    ultimo = NULL;
     longitud = 0;
 }
 
@@ -22,7 +22,7 @@ Cola::~Cola()
 
 void Cola::encolar(Proceso elemento)
 {
-    NodoCola *nuevo_nodo = new NodoCola(elemento, nullptr);
+    NodoCola *nuevo_nodo = new NodoCola(elemento, NULL);
     if (esVacia())
     {
         primero = nuevo_nodo;
@@ -45,8 +45,8 @@ Proceso Cola::desencolar()
 
         if ((primero == ultimo) && (primero->siguiente == NULL))
         {
-            primero = nullptr;
-            ultimo = nullptr;
+            primero = NULL;
+            ultimo = NULL;
             delete aux;
         }
         else

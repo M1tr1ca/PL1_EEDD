@@ -7,8 +7,8 @@
 
 Sistema::Sistema()
 {
-    pilaProcesos = Pila();
-    nucleos = Lista();
+    // pilaProcesos = Pila();
+    // nucleos = Lista();
     minutos = 0;
     crearProcesos();
 }
@@ -73,7 +73,7 @@ void Sistema::simularMinutos(int n)
             while (!pilaProcesos.esVacia() && pilaProcesos.primero().getInicio() == 0)
             {
                 Proceso proceso = pilaProcesos.desapilar();
-                procesoEntraEspera(proceso);
+                procesoEntraEspera(new Proceso(proceso));
             }
         }
 
@@ -113,7 +113,7 @@ void Sistema::nuevoProceso(Proceso p)
     }
 }
 
-void Sistema::procesoEntraEspera(Proceso p)
+void Sistema::procesoEntraEspera(Proceso *p)
 {
     Nucleo *n = nucleos.buscarMenosCola();
     if (n->numeroProcesosTotales() >= 3) // El proceso ejecutándose también cuenta
@@ -121,17 +121,17 @@ void Sistema::procesoEntraEspera(Proceso p)
         Nucleo nuevoNucleo;
         nuevoNucleo.setProcesoActual(p);
         nucleos.izquierda(nuevoNucleo);
-        cout << "Proceso " << p.getPID() << " entró en ejecución en el núcleo " << nuevoNucleo.getId() << endl;
+        cout << "Proceso " << p->getPID() << " entró en ejecución en el núcleo " << nuevoNucleo.getId() << endl;
     }
     else if (n->numeroProcesosTotales() == 0)
     {
         n->setProcesoActual(p);
-        cout << "Proceso " << p.getPID() << " entró en ejecución en el núcleo " << n->getId() << endl;
+        cout << "Proceso " << p->getPID() << " entró en ejecución en el núcleo " << n->getId() << endl;
     }
     else
     {
-        n->añadirEsperaPrioridad(p);
-        cout << "Proceso " << p.getPID() << " entró en la cola de espera del núcleo" << n->getId() << endl;
+        n->añadirEsperaPrioridad(*p);
+        cout << "Proceso " << p->getPID() << " entró en la cola de espera del núcleo " << n->getId() << endl;
     }
 }
 

@@ -6,15 +6,17 @@ using namespace std;
 Nucleo::Nucleo(int id)
 {
     ID = id;
-    procesoActual = Proceso();
-    colaEspera = Cola();
+    puntProcesoActual = NULL;
+    // colaEspera = Cola();
 }
 
 Nucleo::Nucleo()
 {
-    srand(time(0)); // Semilla para garantizar números aleatorios
-    ID = (rand() % 1000) + 1;
-    procesoActual = Proceso();
+    static int pidCounter = 0;
+    // srand(time(0)); // Semilla para garantizar números aleatorios
+    ID = pidCounter++;
+    // ID = (rand() % 1000) + 1;
+    puntProcesoActual = NULL;
     colaEspera = Cola();
 }
 
@@ -30,15 +32,15 @@ int Nucleo::getId()
 }
 
 // Obtener el proceso que se está ejecutando actualmente
-Proceso Nucleo::getProcesoActual()
+Proceso *Nucleo::getPuntProcesoActual()
 {
-    return procesoActual;
+    return puntProcesoActual;
 }
 
 // Asignar un proceso para ejecutarse en el núcleo
-void Nucleo::setProcesoActual(Proceso proceso)
+void Nucleo::setProcesoActual(Proceso *proceso)
 {
-    procesoActual = proceso;
+    puntProcesoActual = proceso;
 }
 
 // Añadir un proceso a la cola de espera del núcleo
@@ -54,7 +56,10 @@ void Nucleo::añadirEsperaPrioridad(Proceso proceso)
     {
         caux.encolar(colaEspera.desencolar());
     }
-    this->colaEspera = caux;
+    while (!caux.esVacia())
+    {
+        colaEspera.encolar(caux.desencolar());
+    }
 }
 
 // Obtener y eliminar el primer proceso de la cola de espera
@@ -66,7 +71,7 @@ Proceso Nucleo::obtenerProcesoDeCola()
 // Consultar si el núcleo está ocupado
 bool Nucleo::estaOcupado()
 {
-    return procesoActual.getPID() != -1; // Está ocupado si hay un proceso asignado
+    return puntProcesoActual != NULL; // Está ocupado si hay un proceso asignado
 }
 
 // Consultar el número de procesos en la cola de espera
@@ -89,7 +94,7 @@ void Nucleo::mostrarInformacion()
 
     if (estaOcupado())
     {
-        cout << "Proceso en ejecución (PID): " << procesoActual.getPID() << endl;
+        cout << "Proceso en ejecución (PID): " << puntProcesoActual->getPID() << endl;
     }
 
     if (numeroProcesosEspera() > 0)
@@ -105,22 +110,24 @@ void Nucleo::mostrarInformacion()
 
 void Nucleo::reducirTiempoVida()
 {
-    if (procesoActual.getPID() != -1)
+    if (puntProcesoActual != NULL)
     {
-        procesoActual.reducirTiempoVida();
+        puntProcesoActual->reducirTiempoVida();
     }
 }
 
 void Nucleo::terminarProcesoActual()
 {
-    cout << "Proceso " << procesoActual.getPID() << " terminado en el núcleo " << ID << endl;
+    cout << "Proceso " << puntProcesoActual->getPID() << " terminado en el núcleo " << ID << endl;
     if (colaEspera.esVacia())
     {
-        procesoActual = Proceso();
+        delete puntProcesoActual;
+        puntProcesoActual = NULL;
     }
     else
     {
-        procesoActual = colaEspera.desencolar();
-        cout << "Proceso " << procesoActual.getPID() << " entró en ejecución en el núcleo " << ID << endl;
+        delete puntProcesoActual;
+        puntProcesoActual = new Proceso(colaEspera.desencolar());
+        cout << "Proceso " << puntProcesoActual->getPID() << " entró en ejecución en el núcleo " << ID << endl;
     }
 }

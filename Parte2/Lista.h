@@ -7,7 +7,7 @@
 class Lista
 {
 private:
-    lnodo cima;
+    NodoLista *cima;
     int longitud;
 
 public:

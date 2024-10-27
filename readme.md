@@ -7,3 +7,7 @@ Todo:
 "hay 1 nucleos"
 Mensaje al crear la pila
 Tiempo global
+
+Qutar variables que sean constructores por defecto 
+Poner nombres de variable que describan mejor
+Comentarios coherentes

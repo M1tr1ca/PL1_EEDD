@@ -71,8 +71,10 @@ void Sistema::mostrarEjecutando()
     }
     else
     {
-        cout << nucleosLibres << " núcleos libres\n" << endl;
-        cout << "Procesos en ejecución:\n" << endl;
+        cout << nucleosLibres << " núcleos libres\n"
+             << endl;
+        cout << "Procesos en ejecución:\n"
+             << endl;
         for (int i = 0; i < TOTAL_NUCLEOS; i++)
         {
             if (nucleos[i] != NULL)
@@ -126,7 +128,7 @@ void Sistema::simularMinutos(int n)
         }
 
         // Asignar procesos a los núcleos libres
-        while (!colaEspera.esVacia() && nucleosLibres > 0)
+        while ((!colaEspera.esVacia()) && (nucleosLibres > 0))
         {
             Proceso proceso = colaEspera.desencolar();
             for (int k = 0; k < TOTAL_NUCLEOS; k++)
@@ -187,7 +189,10 @@ void Sistema::procesoEntraEspera(Proceso p)
     {
         caux.encolar(colaEspera.desencolar());
     }
-    colaEspera = caux;
+    while (!caux.esVacia())
+    {
+        colaEspera.encolar(caux.desencolar());
+    }
 }
 
 void Sistema::mostrarEstado()

@@ -7,7 +7,7 @@ using namespace std;
 
 Pila::Pila()
 {
-    cima = nullptr;
+    cima = NULL;
 }
 
 Pila::~Pila()
@@ -22,7 +22,7 @@ Pila::~Pila()
 
 bool Pila::esVacia()
 {
-    return cima == nullptr;
+    return cima == NULL;
 }
 
 void Pila::apilar(Proceso p)
@@ -63,7 +63,7 @@ void Pila::mostrarTodo()
     }
 
     pnodo actual = cima;
-    while (actual != nullptr)
+    while (actual != NULL)
     {
         actual->valor.mostrarInformacion(); // Asumiendo que 'Proceso' tiene sobrecargado el operador '<<'
         cout << endl;
@@ -74,7 +74,7 @@ void Pila::mostrarTodo()
 void Pila::reducirTiempoInicio()
 {
     pnodo actual = cima;
-    while (actual != nullptr)
+    while (actual != NULL)
     {
         actual->valor.reducirTiempoInicio();
         actual = actual->siguiente;

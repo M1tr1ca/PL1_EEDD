@@ -5,7 +5,7 @@ using namespace std;
 
 NodoLista::NodoLista()
 {
-    valor = Nucleo();
+    // valor = Nucleo();
     siguiente = NULL;
 }
 

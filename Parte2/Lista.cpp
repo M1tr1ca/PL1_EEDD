@@ -23,7 +23,7 @@ Lista::~Lista()
 
 bool Lista::esVacia()
 {
-    return cima == nullptr;
+    return cima == NULL;
 }
 
 void Lista::izquierda(Nucleo p)
@@ -35,7 +35,7 @@ void Lista::izquierda(Nucleo p)
 
 void Lista::derecha(Nucleo p)
 {
-    lnodo nuevo = new NodoLista(p, nullptr);
+    lnodo nuevo = new NodoLista(p, NULL);
 
     if (esVacia())
     {
@@ -44,7 +44,7 @@ void Lista::derecha(Nucleo p)
     else
     {
         lnodo actual = cima;
-        while (actual->siguiente != nullptr)
+        while (actual->siguiente != NULL)
         {
             actual = actual->siguiente;
         }
@@ -72,7 +72,7 @@ Nucleo Lista::ult()
     }
 
     lnodo actual = cima;
-    while (actual->siguiente != nullptr)
+    while (actual->siguiente != NULL)
     {
         actual = actual->siguiente;
     }
@@ -101,7 +101,7 @@ void Lista::mostrarTodo()
     }
 
     lnodo actual = cima;
-    while (actual != nullptr)
+    while (actual != NULL)
     {
         actual->valor.mostrarInformacion();
         actual = actual->siguiente;
@@ -118,22 +118,22 @@ void Lista::eult()
 
     Nucleo valor;
 
-    if (cima->siguiente == nullptr)
+    if (cima->siguiente == NULL)
     {
         valor = cima->valor;
         delete cima;
-        cima = nullptr;
+        cima = NULL;
     }
     else
     {
         lnodo actual = cima;
-        while (actual->siguiente->siguiente != nullptr)
+        while (actual->siguiente->siguiente != NULL)
         {
             actual = actual->siguiente;
         }
 
         delete actual->siguiente;
-        actual->siguiente = nullptr;
+        actual->siguiente = NULL;
     }
 
     longitud--;
@@ -148,17 +148,18 @@ void Lista::reducirTiempoVida()
 
     // Recorrer la lista y reducir el tiempo de vida de cada núcleo
     lnodo actual = cima;
-    while (actual != nullptr)
+    while (actual != NULL)
     {
         actual->valor.reducirTiempoVida();
         actual = actual->siguiente;
     }
-    
+
     // Sacar procesos terminados de ejecutar y meter los de la cola de espera
     actual = cima;
-    while (actual != nullptr)
+    while (actual != NULL)
     {
-        if (actual->valor.getProcesoActual().getPID()!=0 && actual->valor.getProcesoActual().getTiempoVida() == 0) {
+        if (actual->valor.getPuntProcesoActual() != NULL && actual->valor.getPuntProcesoActual()->getTiempoVida() == 0)
+        {
             actual->valor.terminarProcesoActual();
         }
         actual = actual->siguiente;
@@ -174,7 +175,7 @@ Nucleo *Lista::buscarMenosCola()
 
     lnodo actual = cima;
     lnodo menor = cima;
-    while (actual != nullptr)
+    while (actual != NULL)
     {
         if (actual->valor.numeroProcesosTotales() < menor->valor.numeroProcesosTotales())
         {
@@ -195,7 +196,7 @@ Nucleo *Lista::buscarMasCola()
 
     lnodo actual = cima;
     lnodo mayor = cima;
-    while (actual != nullptr)
+    while (actual != NULL)
     {
         if (actual->valor.numeroProcesosTotales() > mayor->valor.numeroProcesosTotales())
         {
@@ -216,7 +217,7 @@ int Lista::nucleosLibres()
 
     int libres = 0;
     lnodo actual = cima;
-    while (actual != nullptr)
+    while (actual != NULL)
     {
         if (!actual->valor.estaOcupado())
         {
@@ -233,6 +234,7 @@ void Lista::eliminarNucleosVacios()
     lnodo actual = cima;
     while (!esVacia() && !actual->valor.estaOcupado())
     {
+        cout << "Núcleo " << actual->valor.getId() << " eliminado" << endl;
         lnodo temp = actual;
         cima = actual->siguiente;
         actual = actual->siguiente;
@@ -242,13 +244,14 @@ void Lista::eliminarNucleosVacios()
 
     if (esVacia())
     {
-        cima = new NodoLista(Nucleo(), nullptr);
+        cima = new NodoLista(Nucleo(), NULL);
     }
     else
     {
-
-        while (actual->siguiente != nullptr)
+        actual = cima;
+        while (actual->siguiente != NULL)
         {
+            cout << "Núcleo " << actual->valor.getId() << " eliminado" << endl;
             if (!actual->siguiente->valor.estaOcupado())
             {
                 lnodo temp = actual->siguiente;
