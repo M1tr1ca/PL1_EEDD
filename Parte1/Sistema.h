@@ -19,6 +19,8 @@ private:
     static const int TOTAL_NUCLEOS = 3;
     Proceso *nucleos[TOTAL_NUCLEOS]; // Núcleos del sistema
     int minutos;         // Minutos transcurridos
+    float minutosProcesosVivos;
+    float numProcesosVivos;
 
 public:
     Sistema();
@@ -32,4 +34,5 @@ public:
     void nuevoProceso(Proceso proceso);
     void procesoEntraEspera(Proceso proceso);
     int getMinutos();
+    float getMedia();
 };

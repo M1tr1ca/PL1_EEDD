@@ -7,6 +7,8 @@ Sistema::Sistema()
 {
     nucleosLibres = TOTAL_NUCLEOS;
     minutos = 0;
+    minutosProcesosVivos = 0;
+    numProcesosVivos = 0;
     for (int i = 0; i < TOTAL_NUCLEOS; i++)
     {
         nucleos[i] = NULL;
@@ -101,16 +103,27 @@ void Sistema::simularMinutos(int n)
     {
 
         // Simular los procesos en la pila
-        cout << "Simulando minuto " << minutos << "..." << endl;
         minutos++;
+        cout << "Simulando minuto " << minutos << "..." << endl;
+
+        minutosProcesosVivos += colaEspera.getLongitud();
+        for (int j = 0; j < TOTAL_NUCLEOS; j++)
+        {
+            if (nucleos[j] != NULL)
+            {
+                minutosProcesosVivos++;
+            }
+        }
+
         if (!pilaProcesos.esVacia())
         {
             pilaProcesos.reducirTiempoInicio();
-            while (!pilaProcesos.esVacia() && pilaProcesos.primero().getInicio() == 0)
+            while (!pilaProcesos.esVacia() && pilaProcesos.primero().getInicio() <= 0)
             {
                 Proceso proceso = pilaProcesos.desapilar();
                 cout << "Proceso " << proceso.getPID() << " entró en la cola de espera" << endl;
                 procesoEntraEspera(proceso);
+                numProcesosVivos++;
             }
         }
 
@@ -201,4 +214,9 @@ void Sistema::procesoEntraEspera(Proceso p)
 int Sistema::getMinutos()
 {
     return minutos;
+}
+
+float Sistema::getMedia()
+{
+    return minutosProcesosVivos / numProcesosVivos;
 }

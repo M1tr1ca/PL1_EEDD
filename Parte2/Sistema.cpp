@@ -64,8 +64,8 @@ void Sistema::simularMinutos(int n)
     for (int i = 0; i < n; i++)
     {
         // Simular los procesos en la pila
-        cout << "Simulando minuto " << minutos << "...         " << endl;
         minutos++;
+        cout << "Simulando minuto " << minutos << "...         " << endl;
 
         // Simular los procesos en ejecución
         nucleos.reducirTiempoVida();
