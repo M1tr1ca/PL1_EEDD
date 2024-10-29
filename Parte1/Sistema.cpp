@@ -20,16 +20,16 @@ void Sistema::crearProcesos()
 {
     cout << "Creando 10 procesos..." << endl;
     // Crear 10 procesos manualmente
-    nuevoProceso(Proceso(1001, 1, 10, 30, 2, -1));
-    nuevoProceso(Proceso(1002, 1, 5, 20, 1, -1));
-    nuevoProceso(Proceso(1003, 1, 15, 25, 3, -1));
-    nuevoProceso(Proceso(1004, 1, 3, 10, 0, -1));
-    nuevoProceso(Proceso(1005, 1, 12, 15, 4, -1));
-    nuevoProceso(Proceso(1006, 1, 8, 18, 1, -1));
-    nuevoProceso(Proceso(1007, 1, 20, 10, 2, -1));
-    nuevoProceso(Proceso(1008, 1, 25, 30, 3, -1));
-    nuevoProceso(Proceso(1009, 1, 14, 20, 0, -1));
-    nuevoProceso(Proceso(1010, 1, 18, 15, 1, -1));
+    nuevoProceso(Proceso(1, 0, 1, 5, 1, -1));
+    nuevoProceso(Proceso(2, 1, 1, 3, 2, -1));
+    nuevoProceso(Proceso(3, 1, 1, 6, 9, -1));
+    nuevoProceso(Proceso(4, 1, 1, 7, 5, -1));
+    nuevoProceso(Proceso(5, 1, 1, 6, 1, -1));
+    nuevoProceso(Proceso(6, 1, 1, 8, 3, -1));
+    // nuevoProceso(Proceso(7, 1, 1, 1, 2, -1));
+    // nuevoProceso(Proceso(8, 1, 1, 3, 3, -1));
+    // nuevoProceso(Proceso(9, 1, 1, 2, 0, -1));
+    // nuevoProceso(Proceso(0, 1, 1, 1, 1, -1));
 }
 
 void Sistema::mostrarPila()

@@ -13,7 +13,7 @@ El proyecto se organiza en varios archivos .cpp y .h que definen y manipulan las
 
 ## ⚠️ Consideraciones a tomar en cuenta
 
-Se crean 10 procesos una vez se inicia el sistema, y al crear nuevos procesos se añaden los mismos 10 procesos
+Se crean 6 procesos una vez se inicia el sistema, y al crear nuevos procesos se añaden los mismos 6 procesos
 
 ## 🚀 Ejecución
 
